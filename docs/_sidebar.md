@@ -4,3 +4,4 @@
 - 专题
   - [概览](topics/README.md)
   - [DeepSeek Harness](topics/deepseek-harness.md)
+  - [3天入门计划](topics/dsh-3day-plan.md)
