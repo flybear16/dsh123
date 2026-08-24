@@ -7,3 +7,4 @@
   - [3天入门计划](topics/dsh-3day-plan.md)
   - [skill vs 插件（WaytoAGI 转载）](topics/waytoagi-dsh-skill-vs-plugin.md)
   - [skill 兼容机制](topics/dsh-skill-compat.md)
+  - [Day 2 笔记 · 插件机制精读](topics/dsh-day2-plugins.md)

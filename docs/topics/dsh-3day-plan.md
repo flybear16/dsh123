@@ -11,9 +11,9 @@
 
 ## Day 2 · 换模式跑 + 看插件机制（8/24）
 
-- [ ] **10min**：分别用 Minimal 和 PTC 模式跑同一个任务（比如"列出目录里所有 md 文件"），感受工具集差异
-- [ ] **10min**：读官方第一个插件教程（deepseek-harness.github.io → develop/basic），理解插件链路：apply → inject → ctx.tools.register → patch
-- [ ] **5min**：逛 github.com/topics/dsh-plugin，看看社区插件
+- [ ] **10min**：分别用 Minimal 和 PTC 模式跑同一个任务（比如"列出目录里所有 md 文件"），感受工具集差异（待实操，需 API Key）
+- [x] **10min**：读官方第一个插件教程（deepseek-harness.github.io → develop/basic），理解插件链路：apply → inject → ctx.tools.register → patch → 已精读，笔记见 [Day 2 笔记](/topics/dsh-day2-plugins.md)
+- [x] **5min**：逛 github.com/topics/dsh-plugin，看看社区插件 → 已盘点 ⭐Top5（topic 共 11,275 仓），见笔记第三节
 
 ## Day 3 · 写一个自己的小插件（8/25）
 
