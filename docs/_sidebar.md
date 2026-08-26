@@ -10,3 +10,4 @@
   - [Day 2 笔记 · 插件机制精读](topics/dsh-day2-plugins.md)
   - [PTC 模式深潜](topics/dsh-ptc-deep-dive.md)
   - [Cordis 元框架专题](topics/dsh-cordis-framework.md)
+  - [沙箱与安全机制](topics/dsh-sandbox-security.md)
