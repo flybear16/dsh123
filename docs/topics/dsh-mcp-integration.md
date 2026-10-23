@@ -1,12 +1,13 @@
 # dsh 作为 MCP client：外部工具服务器接入指南
 
 > 调研时间：2026-08-26 · 来源：GitHub 源码（master@2026-08-21）+ 包 README + 实现笔记 + 本机实测（dsh 0.1.0-rc.6，全链路验证通过）
+> 复核：2026-10-24，上游 npm latest 已到 0.2.1-rc.2——核心结论（插件名/工具命名/transport/配置格式/重连行为）经官方文档站逐条确认未变，rc.6 实测记录继续有效；文档债已还、参考链接有迁移，见文中【2026-10-24 更新】标注
 
 ## 一、先说结论
 
 dsh **原生支持作为 MCP client**，不需要装任何社区插件——官方内置桥接插件 `@deepseek-ai/dsh-mcp-client`（源码位于 `packages/mcp/mcp-client/`，随主包分发）。一个 MCP server = cordis 配置里的一条插件实例，server 的工具会以 `mcp__<serverName>__<tool>` 形式注册进模型工具列表，**命名拼法与 Claude Code、Codex 完全一致**（有意设计，见实现笔记）。
 
-但有个反直觉的发现：**主 README、docs/ 目录、subsystems 子系统文档里全部搜不到 "MCP" 字样**。MCP 的全部官方文档藏在三个非显眼位置——包内 README、`examples/mcp-memory/` 示例、`.agents/notes/` 实现笔记。想用 MCP 全靠"考古"，这是 v0.1 文档债（信息日期：2026-08-26）。
+但有个反直觉的发现：**主 README、docs/ 目录、subsystems 子系统文档里全部搜不到 "MCP" 字样**。MCP 的全部官方文档藏在三个非显眼位置——包内 README、`examples/mcp-memory/` 示例、`.agents/notes/` 实现笔记。想用 MCP 全靠"考古"，这是 v0.1 文档债（信息日期：2026-08-26）。**【2026-10-24 更新】文档债已还**：文档站新增"集成 → 记忆 MCP"官方指南（[guide/mcp-memory](https://deepseek-harness.github.io/deepseek-harness/guide/mcp-memory)，中英双语），覆盖 DSH 职责边界、三份参考配置、写入/召回验证流程与通用接入字段。
 
 ## 二、官方考证：支持范围与设计决策
 
@@ -18,6 +19,7 @@ dsh **原生支持作为 MCP client**，不需要装任何社区插件——官�
 | 底层 SDK | 官方 `@modelcontextprotocol/sdk`（版本锁定；同 SDK 也被 Claude Desktop / Cursor / VS Code 使用） |
 | 实现时间线 | 2026-07-07 实现 → 2026-08-06 补自动重连 → 2026-08-13 随 v0.1 开源 |
 | E2E 测试 | 官方 e2e 用 `server-everything` + `server-filesystem`（stdio）和进程内 HTTP transport |
+| 版本动态 | 【2026-10-24】npm latest 已到 `0.2.1-rc.2`；桥接插件另发独立包 `@deepseek-ai/dsh-mcp-client@0.0.1-rc.1`。官方指南逐条确认核心行为与 rc.6 一致，本文 rc.6 实测记录继续有效 |
 
 ### 关键设计决策（摘自实现笔记 `.agents/notes/.../2026-07-07-mcp-client-plugin.zh.md`）
 
@@ -75,6 +77,18 @@ dsh **原生支持作为 MCP client**，不需要装任何社区插件——官�
 | 全局持久 | `$DSH_HOME/cordis.patch.yml`（`~/.dsh/cordis.patch.yml`） | 本机所有 profile |
 
 注意 patch 文件是"追加 insert 列表"结构，别覆盖已有用户 patch；改配置有 **HMR 热替换**（编辑 yml 触发断开+重连，serverName 不变则工具名不变，会话历史和权限规则继续有效）。
+
+### 3.4 【2026-10-24 更新】0.2.x 官方参考配置与新示例路径
+
+文档站指南收录三份"默认关闭"的记忆 server 参考配置（官方声明仅为互操作参考，非背书）：
+
+| 系统 | 已测试版本 | transport | 上游前置 |
+|------|------|------|------|
+| Memorix | 1.3.0 | stdio | Node 22.18+，`npm i -g memorix@1.3.0` |
+| MCP Reference Memory | `@modelcontextprotocol/server-memory@2026.7.4` | stdio | `npm i -g @modelcontextprotocol/server-memory@2026.7.4` |
+| Engram | v1.20.0 | stdio | Go 1.25.10+（`go install`）或发布版二进制 |
+
+示例文件已从 `examples/mcp-memory/` 迁到 **`apps/cli/config/examples/mcp-memory/`**（engram / mcp-reference-memory / memorix 三个 cordis.yml）。官方明确：交付组合不包含任何记忆 server，不传 `--patch` 三项全部保持关闭。接入其他 server 的通用字段与 3.1 完全一致（`id`/`serverName`/`transport`/`command`/`args`/`env`/`cwd`，远程换 `url`+`headers`），并再次确认环境清洗、异步工具发现（发第一条消息前等 `mcp__...` 工具出现）、重连预算耗尽后注销工具等行为描述。
 
 ## 四、实测记录（本机 dsh 0.1.0-rc.6，2026-08-26）
 
@@ -151,8 +165,9 @@ dsh --profile headless --dump-config --patch ./my-mcp.cordis.yml | grep -A6 mcp
 ## 参考
 
 - 包 README（中文）：https://github.com/deepseek-ai/deepseek-harness/blob/master/packages/mcp/mcp-client/README.zh.md
-- 实现笔记（中文，含全部设计决策）：https://github.com/deepseek-ai/deepseek-harness/blob/master/.agents/notes/implemented/feature/2026-07-07-mcp-client-plugin.zh.md
-- 自动重连笔记：https://github.com/deepseek-ai/deepseek-harness/blob/master/.agents/notes/implemented/feature/2026-08-06-mcp-client-auto-reconnect.zh.md
-- 官方记忆 MCP 示例（三种 server 配置范本）：https://github.com/deepseek-ai/deepseek-harness/tree/master/examples/mcp-memory
+- 官方文档站"记忆 MCP"指南（0.2.x，中英双语）：https://deepseek-harness.github.io/deepseek-harness/guide/mcp-memory
+- 实现笔记（中文，含全部设计决策；已归档至 archived/，2026-10-24 验证）：https://github.com/deepseek-ai/deepseek-harness/blob/master/.agents/notes/archived/feature/2026-07-07-mcp-client-plugin.zh.md
+- 自动重连笔记（同归档）：https://github.com/deepseek-ai/deepseek-harness/blob/master/.agents/notes/archived/feature/2026-08-06-mcp-client-auto-reconnect.zh.md
+- 官方记忆 MCP 示例（三种 server 配置范本；路径已迁移，2026-10-24 验证）：https://github.com/deepseek-ai/deepseek-harness/tree/master/apps/cli/config/examples/mcp-memory
 - MCP 官方 server 目录：https://github.com/modelcontextprotocol/servers
 - 上游承接：[skill vs 插件（WaytoAGI）](/topics/waytoagi-dsh-skill-vs-plugin.md) · [skill 兼容机制](/topics/dsh-skill-compat.md) · [Day2 插件精读](/topics/dsh-day2-plugins.md)
