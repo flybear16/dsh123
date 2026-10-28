@@ -14,4 +14,5 @@
   - [Cordis 元框架专题](topics/dsh-cordis-framework.md)
   - [沙箱与安全机制](topics/dsh-sandbox-security.md)
   - [MCP 接入指南](topics/dsh-mcp-integration.md)
+  - [插件生态 Top 5 盘点](topics/dsh-top5-plugins.md)
   - [成本与模型选择](topics/dsh-cost-and-model-selection.md)
