@@ -38,4 +38,5 @@
 |---|---|
 | [MCP 接入指南](dsh-mcp-integration.md) | 接入现有 MCP server |
 | [成本与模型选择](dsh-cost-and-model-selection.md) | 模型搭配与开销 |
-| [桌宠与插件市场](dsh-pet-and-market.md) | dsh-pet / dsh-market 两款体验型生态插件入门 |
+| [dsh-pet 桌宠](dsh-pet.md) | DSH 桌面宠物：三件套自造流程、能力速览、对外接口 |
+| [dsh-market 插件市场](dsh-market.md) | 可视化插件货架：安装、索引挂载、防假冒提醒 |

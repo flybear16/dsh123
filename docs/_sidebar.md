@@ -15,5 +15,6 @@
   - [沙箱与安全机制](topics/dsh-sandbox-security.md)
   - [MCP 接入指南](topics/dsh-mcp-integration.md)
   - [插件生态 Top 5 盘点](topics/dsh-top5-plugins.md)
-  - [桌宠与插件市场](topics/dsh-pet-and-market.md)
+  - [dsh-pet 桌宠](topics/dsh-pet.md)
+  - [dsh-market 插件市场](topics/dsh-market.md)
   - [成本与模型选择](topics/dsh-cost-and-model-selection.md)
