@@ -6,6 +6,8 @@
 
 [dsh-market org](https://github.com/dsh-market/dsh-market)（⭐9,323）：装进 dsh 的可视化插件市场——Plugins 页面里的 Discover tab（0.2.1+ 原生位置），浏览/搜索/一键安装/主题热切换。DSH 生态两个月翻倍的背景下，与其每次翻 GitHub，不如有个货架。
 
+**体量**：收录社区插件已近 9,000 个（2026-11-06，鱼皮盘点），网站按周下载量排序可看最近热门。索引源除自建 catalog 外，社区还维护了 dshfind 与 Awesome DSH Plugin 两个目录可在 Index sources 挂载。
+
 ## 安装
 
 ```bash
