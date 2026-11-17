@@ -2,7 +2,7 @@
 
 > 一只住在 DeepSeek Harness 里的桌宠：一百余段透明动画、会聊天会报余额、还能让别的插件借它开口。数据复核 2026-11-16。
 
-**热度**：dshmarket 下载榜第 2（仅次于 billion-context），据程序员鱼皮 2026-11-06 盘点。
+**热度**：dshmarket 下载榜第 2（仅次于 billion-context），据程序员鱼皮 2026-11-06 盘点（本站复核见《[12 个超火插件盘点](dsh-top12-plugins.md)》）。同家族：[dsh-whale-widget](dsh-whale-widget.md)（右下角余额挂件）、[dsh-claude-style](dsh-claude-style.md) 里的 Deepy 像素小鲸。
 
 ## 是什么
 

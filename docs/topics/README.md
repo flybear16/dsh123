@@ -38,5 +38,9 @@
 |---|---|
 | [MCP 接入指南](dsh-mcp-integration.md) | 接入现有 MCP server |
 | [成本与模型选择](dsh-cost-and-model-selection.md) | 模型搭配与开销 |
+| [12 个超火插件盘点](dsh-top12-plugins.md) | 鱼皮 2026-11-06 下载榜逐仓复核总表 + 选购指南（11 个插件各有独立页） |
+| [billion-context](dsh-billion-context.md) · [dsh-cost-meter](dsh-cost-meter.md) · [dsh-vision-router](dsh-vision-router.md) · [cc-safety-net](dsh-cc-safety-net.md) | 实用组四件：压缩省钱 / 记账 / 识图 / 防删库 |
+| [archify](dsh-archify.md) · [dsh-ppt](dsh-ppt.md) · [dsh-synapse](dsh-synapse.md) | 创意组三件：架构图 / PPT / 分支画布 |
+| [dsh-pua](dsh-pua.md) · [dsh-whale-widget](dsh-whale-widget.md) · [dsh-meme](dsh-meme.md) · [dsh-claude-style](dsh-claude-style.md) | 整活组四件：上强度 / 余额挂件 / 斗图 / Claude 主题 |
 | [dsh-pet 桌宠](dsh-pet.md) | DSH 桌面宠物：三件套自造流程、能力速览、对外接口 |
 | [dsh-market 插件市场](dsh-market.md) | 可视化插件货架：安装、索引挂载、防假冒提醒 |
