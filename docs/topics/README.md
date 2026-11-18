@@ -31,6 +31,7 @@
 | 篇目 | 内容 |
 |---|---|
 | [Day 3 · 插件实战](dsh-day3-hands-on.md) | git-commit-check 全生命周期：开发→挂载→验证→卸载，三坑源码考证 |
+| [dsh-plugin-builder 写插件的插件](dsh-plugin-builder.md) | Agent Skill 元插件：决策扩展点→生成→验证→打包，showcase 四件实证 |
 
 ## 运维参考
 

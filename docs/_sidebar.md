@@ -9,6 +9,7 @@
   - [skill 兼容机制](topics/dsh-skill-compat.md)
   - [Day 2 笔记 · 插件机制精读](topics/dsh-day2-plugins.md)
   - [Day 3 实战 · 从零写插件并挂载上线](topics/dsh-day3-hands-on.md)
+  - [dsh-plugin-builder 写插件的插件](topics/dsh-plugin-builder.md)
   - [Claude Code → dsh 迁移实战](topics/dsh-migration-from-claude-code.md)
   - [PTC 模式深潜](topics/dsh-ptc-deep-dive.md)
   - [Cordis 元框架专题](topics/dsh-cordis-framework.md)
