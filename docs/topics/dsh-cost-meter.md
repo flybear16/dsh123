@@ -4,7 +4,7 @@
 
 ## 是什么
 
-[Han-1413141/dsh-cost-meter](https://github.com/Han-1413141/dsh-cost-meter)（⭐708，v1.9.70），MIT，中英双语 UI。定位：Cost tracking and subscription quotas for DeepSeek Harness——按会话、模型、调用记录费用与 token，余额/订阅配额/预算同屏，API 花费与 Plan 等价量分开呈现，多 provider 定价、峰谷提醒，侧边栏与输入框显示均可配置。
+[Han-1413141/dsh-cost-meter](https://github.com/Han-1413141/dsh-cost-meter)（⭐716，v1.9.70；11-18 双通道复核 API/shields 一致），MIT，中英双语 UI。定位：Cost tracking and subscription quotas for DeepSeek Harness——按会话、模型、调用记录费用与 token，余额/订阅配额/预算同屏，API 花费与 Plan 等价量分开呈现，多 provider 定价、峰谷提醒，侧边栏与输入框显示均可配置。
 
 ## 安装
 

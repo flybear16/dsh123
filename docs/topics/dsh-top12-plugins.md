@@ -28,7 +28,7 @@
 | dsh-cost-meter | 实用 | 费用账本：余额/会话花费/峰谷 | 708 | — | [页](dsh-cost-meter.md) |
 | dsh-vision-router | 实用 | 免费识图通道 + 14 个像素级视觉工具 | 1,282 | — | [页](dsh-vision-router.md) |
 | cc-safety-net | 实用 | 拦截删库命令与敏感文件访问 | 2,059 | — | [页](dsh-cc-safety-net.md) |
-| archify | 效率 | 自动画可交互架构图（准但慢） | 26k | skills.sh 130K+ 安装 | [页](dsh-archify.md) |
+| archify | 效率 | 自动画可交互架构图（准但慢） | 97,212 | skills.sh 130K+ 安装 | [页](dsh-archify.md) |
 | dsh-ppt | 效率 | 一句话出 HTML 放映 + PPTX | 37 | — | [页](dsh-ppt.md) |
 | dsh-synapse | 效率 | 对话分支画布（还不够稳定） | 724 | — | [页](dsh-synapse.md) |
 | dsh-pua | 整活 | 大厂风味 PUA 你的 AI（真有用） | 76 | — | [页](dsh-pua.md) |
@@ -39,7 +39,7 @@
 
 > star 只反映 GitHub 热度，与实际装机量可能倒挂（如 dsh-ppt star 极低但实测流程完整；archify star 爆表因为本体是跨宿主 agent skill）。
 >
-> 口径备注：archify ⭐26k 与 dsh-cost-meter ⭐708 两个数字不同抓取通道出入较大（archify 经 shields.io JSON 2026-11-17 两次核验一致；cost-meter 页面未渲染、npm-era API 快照过期），下次复核优先重抓这两个。
+> 口径备注：star 均为 GitHub API 抓取（11-17），11-18 双通道复核无异常——archify 97,482（API）/ 97k（shields）一致，cost-meter 716 自 708 自然增长；曾短暂写入的 ⭐26k 系单一通道误报，已废弃。
 
 ## 选购指南
 

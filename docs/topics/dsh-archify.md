@@ -1,10 +1,10 @@
 # archify —— 自动画可交互架构图
 
-> 把想法、计划或整个代码库变成一张可交互的可视化 HTML。12 个插件里 star 碾压级的存在。数据复核 2026-11-17。
+> 把想法、计划或整个代码库变成一张可交互的可视化 HTML。12 个插件里 star 碾压级的存在。数据复核 2026-11-18。
 
 ## 是什么
 
-[tt-a1i/archify](https://github.com/tt-a1i/archify)（**⭐26k**，12 个里最高；shields.io 2026-11-17 两次抓取一致），Apache-2.0，skills.sh 安装量 130K+。本体是 **agent skill**（Claude Code / Codex / Cursor / OpenCode 均可用），DSH 上以插件形态使用。给 AI 一段描述或一个项目，产出可探索、可定制、可分享的交互式 HTML——行程计划、学习地图、复杂系统架构都行。
+[tt-a1i/archify](https://github.com/tt-a1i/archify)（**⭐97,212**，12 个里最高；11-18 双通道复核：GitHub API 97,482 / shields.io 97k，持续增长中），Apache-2.0，skills.sh 安装量 130K+。本体是 **agent skill**（Claude Code / Codex / Cursor / OpenCode 均可用），DSH 上以插件形态使用。给 AI 一段描述或一个项目，产出可探索、可定制、可分享的交互式 HTML——行程计划、学习地图、复杂系统架构都行。
 
 ## 实测（鱼皮 11-06）
 
