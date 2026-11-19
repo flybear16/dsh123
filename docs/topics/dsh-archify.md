@@ -2,7 +2,7 @@
 
 > 把想法、计划或整个代码库变成可交互的 HTML 架构图：agent 读代码生成带源证据的系统地图，输出单个自包含 HTML 文件。数据复核 2026-11-17。
 
-**热度**：tt-a1i/archify ⭐26k（shields.io 2026-11-17 两次抓取一致，12 个里最高）、skills.sh 130K+ 安装、**2026-09-01 GitHub Trending 周榜全语言第 1**、量子位（QbitAI）专访。Apache-2.0，稳定版 v3.2.0。
+**热度**：tt-a1i/archify ⭐98,001（11-20 双通道复核：GitHub API 98,001 / shields.io 98k 一致；12 个里最高。11-17 曾抓到 26k，为 shields 边缘缓存陈旧值，已废弃）、skills.sh 130K+ 安装、**2026-09-01 GitHub Trending 周榜全语言第 1**、量子位（QbitAI）专访。Apache-2.0，稳定版 v3.2.0。
 
 ## 是什么
 

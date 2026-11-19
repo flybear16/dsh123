@@ -37,7 +37,7 @@
 
 | # | 插件 | 仓库 | ⭐ | 版本/许可 | 一句话 | 详页 |
 |---|---|---|---:|---|---|---|
-| 5 | archify | [tt-a1i/archify](https://github.com/tt-a1i/archify) | 26k | v3.2.0 · Apache-2.0 | 自动画可交互架构图：读代码生成带源证据的系统地图 | [详页](dsh-archify.md) |
+| 5 | archify | [tt-a1i/archify](https://github.com/tt-a1i/archify) | 98,001 | v3.2.0 · Apache-2.0 | 自动画可交互架构图：读代码生成带源证据的系统地图 | [详页](dsh-archify.md) |
 | 6 | dsh-ppt | [STARDUSTLC666/dsh-ppt](https://github.com/STARDUSTLC666/dsh-ppt) | 37 | MIT | 一句话/Markdown → HTML 放映+可编辑 PPTX，2 毛钱级 | [详页](dsh-ppt.md) |
 | 7 | dsh-synapse | [liangmianya/dsh-synapse](https://github.com/liangmianya/dsh-synapse) | 723 | v0.5.6 · MIT | 对话分支画布：会话/追问/fork 一张地图 | [详页](dsh-synapse.md) |
 
@@ -51,7 +51,7 @@
 | 11 | dsh-meme | [yyh-001/dsh-meme](https://github.com/yyh-001/dsh-meme) | 581 | MIT | 表情包斗图：文字标记+前端配图，AI 也能回图 | [详页](dsh-meme.md) |
 | 12 | dsh-claude-style | [Nwflower/dsh-claude-style](https://github.com/Nwflower/dsh-claude-style) | 619 | MIT（字体例外） | 把 DSH 界面变成 Claude Code Desktop | [详页](dsh-claude-style.md) |
 
-> star 只反映 GitHub 热度，与实际装机量可能倒挂（dsh-ppt star 极低但实测流程完整；archify 26k 是跨宿主 skill 的加成）。口径备注：archify 与 dsh-cost-meter 两个数字不同抓取通道出入较大，下次复核优先重抓这两个。
+> star 只反映 GitHub 热度，与实际装机量可能倒挂（dsh-ppt star 极低但实测流程完整；archify 98k 是跨宿主 skill 的加成）。口径备注：dsh-cost-meter 的 star 不同抓取通道出入较大，下次复核优先重抓；archify 曾于 11-17 经 shields 边缘缓存抓到 26k 陈旧值（11-18/11-20 两轮双通道复核定案 97k→98k），引 star 数建议走 GitHub API 而非 shields 单源。
 
 ## 选购指南（对照画像）
 
