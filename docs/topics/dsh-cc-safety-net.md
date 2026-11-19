@@ -1,33 +1,43 @@
-# cc-safety-net —— AI 编码 agent 的防删库防护网
+# cc-safety-net —— 防删库防护网
 
-> 工具调用执行前解析命令语义：破坏性 Git/文件系统命令、SSH key 与 .env 等敏感文件访问直接拦下。数据复核 2026-11-17。
+> AI 编码 agent 的预执行防护网：危险命令在**运行前**被语义解析拦截，包一层 shell 或重排 flag 都躲不掉。自述"不是沙箱"。数据复核 2026-11-17。
 
-## 是什么
+**热度**：kenryu42/cc-safety-net ⭐2,055、98 forks（GitHub API 实抓）；v2.7.14（2026-11-16 发布，近乎每日发版）；MIT。鱼皮盘点实用组第 4：「更像'最后的保险'，挡不住所有误操作，重要项目仍需勤提交」。
 
-[kenryu42/cc-safety-net](https://github.com/kenryu42/cc-safety-net)（⭐2,059），MIT。名字里的 cc = Claude Code（最早为它做的），现已支持 14 个宿主：Claude Code、Codex、Cursor、**DeepSeek Harness**、**OpenClaw**、OpenCode、Amp、Kimi Code、Copilot CLI、Grok Build、Devin CLI、Antigravity CLI、Hermes Agent、Pi。
+## 是什么与拦截清单
 
-三个关键特性（README 原文）：
+CC 生态出身（npm 描述原文 "A Claude Code plugin that acts as a safety net"），npm 包自带 `dsh.bundle.patch: ./dist/deepseek-harness/cordis.patch.yml`，keywords 含 deepseek-harness/dsh——**DeepSeek Harness 与 Claude Code 并列在支持清单里**。
 
-- **语义解析**：解析命令到底干什么——包装一层、调换 flag 顺序都躲不掉
-- **故障安全**：配置文件坏了回退安全默认，而不是让 agent 停摆
-- **不是沙箱**：不隔离进程、不设文件系统权限、不看网络出口——它只是执行前的最后一道语义闸门
+| 拦截 | 放行 |
+|---|---|
+| `git reset --hard` / `--merge`、`git push --force`、`git clean -f`、`git branch -D`、`git stash drop/clear`、`git worktree remove --force`、`git checkout --`、`git restore` | `git checkout -b`、`git restore --staged`、`git branch -d`、`git clean -n`（dry-run）、`git push --force-with-lease` |
+| 危险目标 `rm -rf`（cwd 外、/、~、$HOME）、`find … -delete`、`xargs rm -rf`、`curl … \| bash`；藏在 `bash -c` / `python -c` / `node -e` 等解释器一行命令里也拦 | 临时目录内的 `rm -rf` |
+| 密钥访问：SSH key、.env、`~/.aws`、coding-CLI 凭据（shell 与文件工具双侧覆盖） | — |
 
-## 实测（鱼皮 11-06）
+## 原理
 
-克隆「AI 闯关学习小程序」，故意让 DSH 删整个后端目录 + `git reset --hard` 回退 5 个提交：
+- **PreToolUse hook，先于权限系统运行**（防御纵深）：对命令做语义分析，而不是通配 deny 规则——后者有 5 种绕过向量（选项前置、shell 变量、flag 重排、多余空格、shell wrapper）；shell wrapper 递归分析 5 层。
+- 配置：用户级 `~/.cc-safety-net/config.json` + 项目级 `.safety-net.json`（项目优先，大小写不敏感去重）；规则 schema `{name ≤64 字符, command, subcommand, block_args, reason ≤256 字符}`；`.cc-safety-net/` 提交进 git 即团队共享策略。
+- GUI 调策略 `npx cc-safety-net gui`（Standard/Strict/Paranoid 三档预设）；rulebook 扩展（Terraform/AWS/gcloud/Azure 官方包或自定义 JSON）；审计日志 `~/.cc-safety-net/logs/*.jsonl`（敏感数据自动脱敏）；`doctor` 7 项检查（含近 7 天拦截汇总）；statusline emoji 指示器。
 
-- DeepSeek 本身先谨慎确认，选「按原样执行」后 `git reset --hard` **连续两次被拦**
-- AI 换 `git restore` 绕路再试——**同样被拦**（「轨迹」页面看得一清二楚）
-- 最终 AI 按提示改走 `git stash` 存改动再回退：结果一样，但被丢的改动躺在 stash 里，后悔药还在
+## 安装
 
-**边界**：`rm -rf backend` 没有被拦。默认规则防的是删根目录、用户主目录这类要命操作，项目内普通目录不在保护范围。它是「挡住最致命几刀」的保险，不是万能兜底——重要的项目还是要勤提交。
+```bash
+npx -y cc-safety-net@latest install   # 通用安装（Node 22+）
+npx -y cc-safety-net@latest doctor    # 体检
+```
 
-## 对照与注意事项
+- **Claude Code**：`/plugin marketplace add kenryu42/cc-marketplace` → `/plugin install safety-net@cc-marketplace` → `/reload-plugins`；支持自然语言建规则 `/set-custom-rules`。
+- **DSH**：走插件通道加载（npm 包自带 dsh.bundle.patch）；DSH 侧加载细节二手转载称以可选 profile 插件、注册 monotonic tool guard（**来源为转载，非 README 原文**，装前自行验证）。
 
-- 本站《[沙箱与安全机制](dsh-sandbox-security.md)》讲的是 DSH 权限模式（内层），cc-safety-net 是外挂的语义层，两层不冲突
-- 对 OpenClaw 用户同样可用（宿主列表在列），可作 exec 审批之外的双保险
+## 局限（作者自述，重要）
+
+- 绕过抗性**低于 OS 沙箱**：只分析命令字符串，无网络防护、不隔离进程——鱼皮实测项目内 `rm -rf` 未拦截。沙箱本体见[沙箱与安全机制](dsh-sandbox-security.md)。
+- 短选项展开可能误报（`-Cfoo` 被拆成 `-C -f -o -o`）；自定义规则只能加限制、不能绕过内置。
+- **默认 fail-open**：配置损坏静默回退内置规则；要 fail-closed 需 `SAFETY_NET_STRICT=1`（另有 `SAFETY_NET_PARANOID=1` / `_RM=1` / `_INTERPRETERS=1`）。
+- 结论一句话：它是"手滑兜底"，不是"恶意防线"；重要仓库仍要靠勤提交 + 远端备份。
 
 ## 出处
 
-- https://github.com/kenryu42/cc-safety-net（README，2026-11-17 抓取）
-- 程序员鱼皮 2026-11-06 实测，见《[Top 12 总表](dsh-top12-plugins.md)》
+- https://github.com/kenryu42/cc-safety-net · https://www.npmjs.com/package/cc-safety-net（2026-11-17 抓取）
+- 程序员鱼皮 2026-11-06 盘点 · 本站《[12 个超火插件盘点](dsh-top12-plugins.md)》
