@@ -70,7 +70,7 @@ git clone https://github.com/kingjly/dsh-plugin-builder.git "$HOME\.claude\skill
 
 ## CC 对照
 
-装进 `~/.claude/skills/` 即可在 Claude Code 用——与《[Day 3 实战](dsh-day3-hands-on.md)》的手工流水线互为高低配：手工版适合学机制，这条 skill 化路线适合批量产出。
+装进 `~/.claude/skills/` 即可在 Claude Code 用。写插件三条路线对照：《[Day 3 实战](dsh-day3-hands-on.md)》手工版学机制；《[dsh 创造模式](dsh-creator-mode.md)》是官方内置的同能力 preset（11-02 官方刚发演示）；本 Skill 是社区版批量产出路线——决策优先 + 拒绝危险扩展的护栏更硬。
 
 ## 出处
 
